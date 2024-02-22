@@ -1,12 +1,26 @@
-from tools import modal
+from tools import model
+from tools import datas
 
-database_name = "deneme1"
-database = modal.Database(database_name)
+database = model.Database(datas.database_name)
+
+############################################################################
+# CREATE A TABLE NAME PRODUCTS
+products_table = datas.products_table
+
+products_table_columns = {
+    "name": "TEXT",
+    "quantity": "REAL",
+    "unit": "TEXT",
+    "price": "REAL",
+    "location": "TEXT",
+    "date": "TEXT",
+    "picture": "TEXT"
+}
+
+database.createTable(products_table, products_table_columns)
 
 # INSERT DATAS MANUALLY
 
-
-table_name = "products_table"
 datas = [
     ["Ahududu", "1", "kg", "50", "(38.1939,  26.4621)", "2024-02-21", "img/ahududu.jpg"],
     ["Ananas", "1", "kg", "100", "(38.1939,  26.4621)", "2024-02-21", "img/ananas.jpg"],
@@ -14,74 +28,12 @@ datas = [
     ["Avokado", "1", "adet", "50", "(38.1939,  26.4621)", "2024-02-21", "img/avokado.jpg"]
 ]
 
-database.insertTable(table_name, datas)
+database.insertTableMany(products_table, datas)
 
-table_name = "product_name_table"
 
-datas = [
-    ["Ahududu"],
-    ["Ananas"],
-    ["Armut"],
-    ["Avokado"],
-    ["Bal Kabağı"],
-    ["Bezelye"],
-    ["Böğürtlen"],
-    ["Brokoli"],
-    ["Brüksel Lahanası"],
-    ["Dolmalık Biber"],
-    ["Domates"],
-    ["Dut"],
-    ["Elma"],
-    ["Enginar"],
-    ["Erik"],
-    ["Greyfurt"],
-    ["Havuç"],
-    ["Hindistan Cevizi"],
-    ["Ispanak"],
-    ["İncir"],
-    ["Kapya Biber"],
-    ["Karnabahar"],
-    ["Karpuz"],
-    ["Kavun"],
-    ["Kayısı"],
-    ["Kereviz"],
-    ["Kestane"],
-    ["Kiraz"],
-    ["Kivi"],
-    ["Kuşkonmaz"],
-    ["Lahana"],
-    ["Limon"],
-    ["Mandalina"],
-    ["Mantar"],
-    ["Marul"],
-    ["Mısır"],
-    ["Muz"],
-    ["Patates"],
-    ["Patlıcan"],
-    ["Pırasa"],
-    ["Portakal"],
-    ["Salatalık"],
-    ["Sarımsak"],
-    ["Sivri Biber"],
-    ["Siyah Üzüm"],
-    ["Soğan"],
-    ["Şeftali"],
-    ["Taze Fasulye"],
-    ["Üzüm"],
-    ["Vişne"]
-]
 
-database.insertTable(table_name, datas)
 
-table_name = "product_unit_table"
 
-datas = [
-    ["kg"],
-    ["g"],
-    ["adet"]
-]
-
-database.insertTable(table_name, datas)
 
 
 

@@ -96,19 +96,19 @@ class Database:
         c.execute(sql_command)
         return c.fetchall()
 
-    def getTableSortByColumnName(self, table_name,columnName):
+    def getTableSortByColumnName(self, table_name,column_name):
         conn = sqlite3.connect(self.database_name)
         c = conn.cursor()
-        sql_command = f"SELECT * FROM {table_name} ORDER BY {columnName} DESC"
+        sql_command = f"SELECT * FROM {table_name} ORDER BY {column_name} DESC"
         c.execute(sql_command)
         return c.fetchall()
 
 
-    def getTableWithColumns(self, table_name, *columns):
+    def getTableWithColumnsSortByColumnName(self, table_name,column_name, *columns):
         conn = sqlite3.connect(self.database_name)
         c = conn.cursor()
         columns = ",".join(columns)
-        sql_command = f"SELECT {columns} FROM {table_name}"
+        sql_command = f"SELECT {columns} FROM {table_name} ORDER BY {column_name} DESC"
         c.execute(sql_command)
         return c.fetchall()
 
