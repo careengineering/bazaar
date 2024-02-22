@@ -1,6 +1,5 @@
 import sqlite3
 
-
 class Database:
     """
     Args:
@@ -28,7 +27,6 @@ class Database:
         for k, v in table_columns.items():
             values += f"{k} {v}, "
         values = values[:-2]
-        print(values)
         sql_command = f"CREATE TABLE IF NOT EXISTS {table_name} ({values})"
         c.execute(sql_command)
         conn.commit()
@@ -47,10 +45,7 @@ class Database:
         c = conn.cursor()
         mock_values = ["?"] * len(datas[0])
         mock_values = ",".join(mock_values)
-        print(len(mock_values))
         sql_command = f"INSERT INTO {table_name} VALUES ({mock_values})"
-        print(len(datas))
-        print(sql_command)
         c.executemany(sql_command, datas)
         conn.commit()
 
@@ -77,21 +72,6 @@ class Database:
         c.execute(sql_command, tp)
         price = c.fetchone()
         return price[0]
-
-
-database_name = "d5"
-database = Database(database_name)
-table_name = "units_list"
-datas = [
-    ("kg",),
-    ("g",),
-    ("adet",)
-    ]
-database.insertTable(table_name, datas)
-
-
-
-
 
 
 

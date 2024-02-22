@@ -1,63 +1,53 @@
-import modal as md
+from tools import modal
 
-database_name =  "deneme"
-database = md.Database(database_name)
+database_name = "deneme1"
+database = modal.Database(database_name)
 
-##########################################
+############################################################################
 # CREATE A TABLE NAME PRODUCTS
-table_name =  "products_table"
-
+table_name = "products_table"
 
 table_columns = {
-     "product_name": "TEXT",
-     "product_unit_quantity": "REAL",
-     "product_unit": "TEXT",
-     "product_unit_price": "REAL",
-     "product_location": "TEXT",
-     "product_unit_price_date": "TEXT",
-     "product_picture": "TEXT"
+    "product_name": "TEXT",
+    "product_unit_quantity": "REAL",
+    "product_unit": "TEXT",
+    "product_unit_price": "REAL",
+    "product_location": "TEXT",
+    "product_unit_price_date": "TEXT",
+    "product_picture": "TEXT"
 }
 
 database.createTable(table_name, table_columns)
+products_table = database.getTable(table_name)
 
-##########################################
+############################################################################
 # CREATE A TABLE NAME PRODUCTS LIST
-table_name =  "product_name_table"
+table_name = "product_name_table"
 
 table_columns = {
-     "product_name": "TEXT"
+    "product_name": "TEXT"
 }
 
-datas = ["Enginar", "Patlıcan", "Kuşkonmaz", "Taze Fasulye",
-         "Brokoli", "Brüksel Lahanası", "Lahana", "Karnıbahar",
-         "Kereviz", "Mısır", "Salatalık", "Sarmısak", "Pırasa",
-         "Marul", "Mantar", "Soğan", "Bezelye", "Sivri Biber", "Kapya Biber",
-         "Patates", "Bal Kabağı", "Dolmalık Biber", "Ispanak", "Domates", "Elma",
-         "Şeftali", "Muz", "Böğürtlen", "Kiraz", "Üzüm", "Limon", "Portakal",
-         "Mandalina", "Vişne", "Avokado", "Ananas", "Siyah Üzüm", "Greyfurt",
-         "İncir", "Erik", "Armut", "Karpuz", "Kavun", "Kayısı", "Kivi", "Dut",
-         "Ahududu", "Havuç", "Hindistan Cevizi", "Kestane", "Diğer"
-         ]
-
 database.createTable(table_name, table_columns)
-# database.insertTable(table_name,datas)
+products_name_table = database.getTable(table_name)
 
-##########################################
+############################################################################
 # CREATE A TABLE NAME UNITS LIST
-table_name =  "product_unit_table"
+table_name = "product_unit_table"
 
 table_columns = {
-     "product_unit": "TEXT",
+    "product_unit": "TEXT"
 }
 
+datas = [
+    ["kg"],
+    ["g"],
+    ["adet"]
+]
+
 database.createTable(table_name, table_columns)
-
-
-
-
-
-
-
+database.insertTable(table_name, datas)
+products_unit_table = database.getTable(table_name)
 
 ############################################################################
 # NOTES:
