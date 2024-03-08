@@ -13,7 +13,6 @@ database = model.Database(f"tools/{datas.database_name}")
 
 st.title("List")
 
-
 df = pd.DataFrame(database.getTableSortByColumnName(datas.products_table,"date"))
 
 
