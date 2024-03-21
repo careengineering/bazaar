@@ -1,5 +1,7 @@
 import sqlite3
-import streamlit as st
+from PIL import Image
+from PIL.ExifTags import TAGS
+
 
 class Database:
     """
@@ -70,6 +72,7 @@ class Database:
         sql_command = f"INSERT INTO {table_name} VALUES ({mock_values})"
         c.execute(sql_command, datas)
         conn.commit()
+
     def insertTableMany(self, table_name, datas):
         """
         Insert datas to table
@@ -88,7 +91,6 @@ class Database:
         c.executemany(sql_command, datas)
         conn.commit()
 
-
     def getTable(self, table_name):
         conn = sqlite3.connect(self.database_name)
         c = conn.cursor()
@@ -102,7 +104,6 @@ class Database:
         sql_command = f"SELECT * FROM {table_name} ORDER BY {column_name} DESC"
         c.execute(sql_command)
         return c.fetchall()
-
 
     def getTableWithColumnsSortByColumnName(self, table_name,column_name, *columns):
         conn = sqlite3.connect(self.database_name)
@@ -120,6 +121,8 @@ class Database:
         c.execute(sql_command, tp)
         price = c.fetchone()
         return price[0]
+
+
 
 
 class Modificators:
@@ -148,3 +151,35 @@ class Modificators:
             if i in turkish_letters.keys():
                 input = input.replace(i, turkish_letters[i])
         return input
+
+
+
+
+
+
+def photoToLocation(photo_url):
+    exif_dict = {}
+    im = Image.open(photo_url)
+    info = im._getexif()
+    if info:
+        for tag, value in info.items():
+            decoded = TAGS.get(tag, tag)
+            exif_dict[decoded] = value
+
+    latitude = None
+    longitude = None
+    if 'GPSInfo' in exif_dict:
+        gps_info = exif_dict['GPSInfo']
+        if gps_info:
+            latitude_ref = gps_info[1]
+            latitude_calculate = float(gps_info[2][0] + gps_info[2][1] / 60 + gps_info[2][2] / 3600)
+            latitude = latitude_calculate if latitude_ref == 'N' else -latitude_calculate
+
+            longitude_ref = gps_info[3]
+            longitude_calculate = float(gps_info[4][0] + gps_info[4][1] / 60 + gps_info[4][2] / 3600)
+            longitude = longitude_calculate if longitude_ref == 'E' else -longitude_calculate
+
+            location = (latitude,longitude)
+            return location
+
+
