@@ -21,14 +21,14 @@ database.createTable(products_table, products_table_columns)
 
 # INSERT DATAS MANUALLY
 
-datas = [
-    ["Ahududu", "1", "kg", "50", "(38.1939,  26.4621)", "2024-02-21", "img/ahududu.jpg"],
-    ["Ananas", "1", "kg", "100", "(38.1939,  26.4621)", "2024-02-21", "img/ananas.jpg"],
-    ["Armut", "1", "kg", "120", "(38.1939,  26.4621)", "2024-02-21", "img/armut.jpg"],
-    ["Avokado", "1", "adet", "50", "(38.1939,  26.4621)", "2024-02-21", "img/avokado.jpg"]
-]
+# datas = [
+#    ["Ahududu", "1", "kg", "50", "(38.1939,  26.4621)", "2024-02-21", "img/ahududu.jpg"],
+#    ["Ananas", "1", "kg", "100", "(38.1939,  26.4621)", "2024-02-21", "img/ananas.jpg"],
+#    ["Armut", "1", "kg", "120", "(38.1939,  26.4621)", "2024-02-21", "img/armut.jpg"],
+#    ["Avokado", "1", "adet", "50", "(38.1939,  26.4621)", "2024-02-21", "img/avokado.jpg"]
+#]
 
-database.insertTableMany(products_table, datas)
+#database.insertTableMany(products_table, datas)
 
 
 

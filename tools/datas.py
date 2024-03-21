@@ -1,6 +1,6 @@
 products_table = "products_table"
 
-database_name = "deneme5"
+database_name = "bazaar"
 
 unit_list = ["kg", "g", "adet"]
 
